@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carina.Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .colorful-bg {
+        transition: background 0.1s;
+      }
+    </style>
+  </head>
+  <body
+    class="flex items-center justify-center h-screen text-white colorful-bg"
+    id="body"
+  >
+    <div class="text-center">
+      <img
+        class="m-auto rounded-full w-24 h-24 mb-2 border-4 border-green-500"
+        src="/carina-avatar.jpg"
+      />
+      <h1 class="text-5xl mb-2"><b>Carina AI</b> <br /></h1>
+      <h2 class="text-2xl mb-8">Coming Soon - Muy Pronto</h2>
+    </div>
+    <div class="absolute top-0 left-0 w-full p-4">
+      <p class="text-right text-sm">
+        <a href="/terms-and-conditions" class="underline"
+          >Terms and Conditions</a
+        >
+      </p>
+    </div>
+    <script>
+      let hue = 180,
+        direction = 1;
+
+      function isMobileDevice() {
+        return (
+          typeof window.orientation !== "undefined" ||
+          navigator.userAgent.indexOf("IEMobile") !== -1
+        );
+      }
+
+      if (isMobileDevice()) {
+        setInterval(() => {
+          hue = hue + direction;
+          if (hue >= 240 || hue <= 180) direction *= -1; // change direction at dark blue (240) and green (180)
+          body.style.backgroundColor = `hsl(${hue},100%,25%)`;
+        }, 30);
+      } else {
+        window.addEventListener("mousemove", (e) => {
+          hue = ((e.pageX / window.innerWidth) * 60 + 180) % 360; // Calculate hue based on mouse position between dark blue (240) and green (180)
+          body.style.backgroundColor = `hsl(${hue},100%,25%)`;
+        });
+      }
+    </script>
+  </body>
+</html>
